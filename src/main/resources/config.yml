@@ -28,5 +28,23 @@ language: "en-US"
 # Проверять плагин на наличие обновлений
 check_updates: true
 
+#
+# Включить ли отображение имени регионов всем новым игрокам при входе
+default_enable: true
+
+showing_settings:
+  #
+  # Включить ли отображение имени регионов всем новым игрокам при входе
+  default_enable: true
+  #
+  # Включить Bossbar
+  enable_bossbar: true
+  #
+  # Включить ActionBar
+  enable_action_bar: true
+  #
+  # Частота обновления в тиках
+  tick_rate: 10
+
 # Don't edit this / Не редактируйте это
 config_version: ${project.version}
