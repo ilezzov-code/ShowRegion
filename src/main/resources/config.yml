@@ -1,0 +1,32 @@
+#  ░██████╗██╗░░██╗░█████╗░░██╗░░░░░░░██╗██████╗░███████╗░██████╗░██╗░█████╗░███╗░░██╗
+#  ██╔════╝██║░░██║██╔══██╗░██║░░██╗░░██║██╔══██╗██╔════╝██╔════╝░██║██╔══██╗████╗░██║
+#  ╚█████╗░███████║██║░░██║░╚██╗████╗██╔╝██████╔╝█████╗░░██║░░██╗░██║██║░░██║██╔██╗██║
+#  ░╚═══██╗██╔══██║██║░░██║░░████╔═████║░██╔══██╗██╔══╝░░██║░░╚██╗██║██║░░██║██║╚████║
+#  ██████╔╝██║░░██║╚█████╔╝░░╚██╔╝░╚██╔╝░██║░░██║███████╗╚██████╔╝██║╚█████╔╝██║░╚███║
+#  ╚═════╝░╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝░░╚═╝╚══════╝░╚═════╝░╚═╝░╚════╝░╚═╝░░╚══╝
+
+# Developer / Разработчик: ILeZzoV
+
+# Socials / Ссылки:
+# • Contact with me / Связаться: https://t.me/ilezovofficial
+# • Telegram Channel / Телеграм канал: RUS: https://t.me/ilezzov
+# • GitHub: https://github.com/ilezzov-code
+
+# By me coffee / Поддержать разработчика:
+# • DA: https://www.donationalerts.com/r/ilezov
+# • YooMoney: https://yoomoney.ru/to/4100118180919675
+# • Telegram Gift: https://t.me/ilezovofficial
+# • TON: UQCInXoHOJAlMpZ-8GIHqv1k0dg2E4pglKAIxOf3ia5xHmKV
+# • BTC: 1KCM1QN9TNYRevvQD63UF81oBRSK67vCon
+# • Card: 5536914188326494
+
+# Supporting messages languages / Доступные языки сообщений:
+# en-US, ru-RU
+language: "en-US"
+
+# Check the plugin for updates
+# Проверять плагин на наличие обновлений
+check_updates: true
+
+# Don't edit this / Не редактируйте это
+config_version: ${project.version}

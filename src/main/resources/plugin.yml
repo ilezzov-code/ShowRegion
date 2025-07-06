@@ -1,0 +1,13 @@
+name: ${project.name}
+description: Displaying regions name in the Action Bar and Bossbar
+version: ${project.version}
+main: ru.ilezzov.showregion.Main
+api-version: '1.18'
+prefix: ShowRegion
+load: STARTUP
+authors: [ ILeZzoV ]
+website: https://t.me/ilezovofficial
+commands:
+  pluginblank:
+    aliases: [ sr ]
+    usage: /showregion

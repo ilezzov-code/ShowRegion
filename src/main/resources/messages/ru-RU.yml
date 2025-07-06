@@ -1,0 +1,30 @@
+# Плагин поддерживает все виды форматирования сообщений.
+# LEGACY — Цвет через & / § и HEX через &#rrggbb / §#rrggbb или &x&r&r&g&g&b&b / §x§r§r§g§g§b§b
+# LEGACY_ADVANCED — Цвет и HEX через &##rrggbb / §##rrggbb
+# MINI_MESSAGE — Цвет через <цвет> Подробнее — https://docs.advntr.dev/minimessage/index.html
+# И все форматы доступные на https://www.birdflop.com/resources/rgb/
+# Вы можете использовать все форматы одновременно в одном сообщении. Плагин это поддерживает
+
+Plugin:
+  plugin-prefix: "&6PluginBlank &8|" # Префикс плагина. Используйте {P} в сообщениях
+  plugin-reload: "{P} &7Плагин успешно &aперезагружен"
+  plugin-has-error-reload: "{P} &7Возникла ошибка при перезагрузке плагина: &c{ERROR}"
+  plugin-use-latest-version: "{P} &7Вы используете &aпоследнюю &7версию плагина: &6{LATEST_VERS}"
+  plugin-use-outdated-version: "{P} &7Вы используете устаревшую версию: &c{OUTDATED_VERS} \n&7Рекомендуем установить последнюю версию плагина: &6{LATEST_VERS} \n&7Скачать: <click:open_url:{DOWNLOAD_LINK}>&e{DOWNLOAD_LINK}"
+  plugin-has-error: "{P} &7Возникла ошибка при выполнении команды O_o → &c{ERROR}"
+  plugin-has-error-check-version: "{P} &7Не удалось получить последнюю версию плагина. Проверьте подключение к интернету"
+
+Messages:
+  command-permission-error: "{P} &cУ вас нет прав для выполнения этой команды O_o"
+  command-no-console-error: "{P} &cЭта команда доступна только для игроков!"
+  command-cooldown: "{P} &7Подождите еще &6{TIME} &7сек. перед выполнением этой команды"
+  command-disable: "{P} &7Эта команда отключена администратором сервера"
+
+  command-main-message: "{P} &7Помощь по командам плагина: \n\n
+      &e/pb version &7— узнать актуальную версию плагина \n
+      &e/pb reload &7— перезагрузить плагин \n\n
+    &7Разработчик: &6{DEVELOPER} \n
+    &7Связаться: <click:open_url:{CONTACT_LINK}>&e{CONTACT_LINK}"
+
+# Не редактируйте это
+config_version: ${project.version}
