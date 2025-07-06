@@ -6,7 +6,7 @@
 # Вы можете использовать все форматы одновременно в одном сообщении. Плагин это поддерживает
 
 Plugin:
-  plugin-prefix: "&6PluginBlank &8|" # Префикс плагина. Используйте {P} в сообщениях
+  plugin-prefix: "&6ShowRegion &8|" # Префикс плагина. Используйте {P} в сообщениях
   plugin-reload: "{P} &7Плагин успешно &aперезагружен"
   plugin-has-error-reload: "{P} &7Возникла ошибка при перезагрузке плагина: &c{ERROR}"
   plugin-use-latest-version: "{P} &7Вы используете &aпоследнюю &7версию плагина: &6{LATEST_VERS}"
@@ -18,13 +18,18 @@ Messages:
   command-permission-error: "{P} &cУ вас нет прав для выполнения этой команды O_o"
   command-no-console-error: "{P} &cЭта команда доступна только для игроков!"
   command-cooldown: "{P} &7Подождите еще &6{TIME} &7сек. перед выполнением этой команды"
-  command-disable: "{P} &7Эта команда отключена администратором сервера"
 
   command-main-message: "{P} &7Помощь по командам плагина: \n\n
-      &e/pb version &7— узнать актуальную версию плагина \n
-      &e/pb reload &7— перезагрузить плагин \n\n
+      &e/sr version &7— узнать актуальную версию плагина \n
+      &e/sr reload &7— перезагрузить плагин \n\n
+      &e/sr toggle &7— включить/выключить отображение регионов
+      &e/sr toggle bossbar &7— включить/выключить boss bar
+      &e/sr toggle actionbar &7— включить/выключить action bar
     &7Разработчик: &6{DEVELOPER} \n
     &7Связаться: <click:open_url:{CONTACT_LINK}>&e{CONTACT_LINK}"
+
+  command_sr_enable: "{P} &7Отображение регионов &aвключено"
+  command_sr_disable: "{P} &7Отображение регионов &cвыключено"
 
 # Не редактируйте это
 config_version: ${project.version}

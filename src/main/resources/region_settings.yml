@@ -1,0 +1,99 @@
+#
+# Настройка сообщений для регионов
+
+# Supporting placeholders / Поддерживаемые плейсхоледеры:
+# {REGION_NAME} — Name of the region / Название региона
+# {REGION_OWNER} — Name of the owner of the region / Имя владельца региона
+default_regions:
+  #
+  # Свободный регион
+  free_region:
+    #
+    # Сообщение для ActionBar
+    action_bar: "&7Вы находитесь на &aсвободной &7территории"
+    #
+    # Настройка Boss Bar
+    boss_bar:
+      #
+      # Отображаемый текст
+      text: "&7Вы находитесь на &eсвободной &7территории"
+      #
+      # Прогресс [0.0 ; 1.0]
+      progress: 1.0
+      #
+      # Цвет полоски. Доступные цвета:
+      # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+      color: YELLOW
+      #
+      # Оверлей. Доступные оверлеи
+      # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+      overlay: PROGRESS
+    #
+    # Чужой регион
+    foreign_region:
+      action_bar: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
+      boss_bar:
+        text: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
+        progress: 1.0
+        color: RED
+        overlay: PROGRESS
+    #
+    # Ваш регион
+    your_region:
+      action_bar: "&7Вы находитесь в &aсвоем &7регионе"
+      boss_bar:
+        text: "&7Вы находитесь в &aсвоем &7регионе"
+        progress: 1.0
+        color: GREEN
+        overlay: PROGRESS
+
+
+
+#
+# Настройка сообщений для определенных регионов
+
+#
+# Список кастомных регионов
+custom_regions:
+  #
+  # Название региона (в WorldGuard)
+  spawn:
+    #
+    # Сообщение для ActionBar
+    action_bar: "&7Вы находитесь на &6спавне"
+    #
+    # Настройка BossBar
+    boss_bar:
+      #
+      # Отображаемый текст
+      text: "&7Вы находитесь на &6спавне"
+      #
+      # Прогресс [0.0 ; 1.0]
+      progress: 1.0
+      #
+      # Цвет полоски. Доступные цвета:
+      # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+      color: YELLOW
+      #
+      # Оверлей. Доступные оверлеи
+      # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+      overlay: PROGRESS
+
+  pvp_arena:
+    action_bar: "&7Вы находитесь на &cPVP-арене"
+    boss_bar:
+      text: "&7Вы находитесь на &cPVP-арене"
+      progress: 1.0
+      color: RED
+      overlay: PROGRESS
+
+  market:
+    action_bar: "&7Вы находитесь на &aрынке"
+    boss_bar:
+      text: "&7Вы находитесь на &aрынке"
+      progress: 1.0
+      color: GREEN
+      overlay: PROGRESS
+
+# Don't edit this / Не редактируйте это
+config_version:
