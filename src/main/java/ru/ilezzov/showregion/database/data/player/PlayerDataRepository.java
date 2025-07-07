@@ -26,13 +26,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
     private final BukkitTask autoSaveTask;
 
     private final Queue<PlayerData> saveQueue = new ConcurrentLinkedQueue<>();
-    private final Cache<UUID, PlayerData> cache = Caffeine.newBuilder()
-            .expireAfterWrite(10, TimeUnit.MINUTES)
-            .maximumSize(10_000)
-            .removalListener((key, data, removalCause) -> {
-                queueSave((PlayerData) data, false);
-            })
-            .build();
+    private final Cache<UUID, PlayerData> cache = Caffeine.newBuilder().build();
 
     public PlayerDataRepository(final SQLDatabase database, final Plugin plugin) {
         this.database = database;

@@ -59,7 +59,9 @@ public class EventManager {
 
     private Map<Class<? extends Listener>, Boolean> loadListenerClasses() {
         return Map.ofEntries(
-                Map.entry(VersionCheckEvent.class, true)
+                Map.entry(VersionCheckEvent.class, true),
+                Map.entry(PlayerLoginEvent.class, true),
+                Map.entry(PlayerLeaveEvent.class, true)
         );
     }
 }
