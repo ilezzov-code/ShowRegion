@@ -18,7 +18,6 @@ public class Config {
     }
 
     public void reload() {
-        this.configFile.reload();
         setValues();
     }
 

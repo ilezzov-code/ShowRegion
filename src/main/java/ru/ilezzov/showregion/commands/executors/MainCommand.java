@@ -84,6 +84,9 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         reloadPluginInfo();
 
         checkPluginVersion();
+
+        Main.insertAllPlayers();
+        Main.getRegionManager().reload();
         
         CommandManager.loadCommands();
         getEventManager().reloadEvents();

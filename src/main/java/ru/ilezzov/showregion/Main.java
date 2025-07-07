@@ -18,6 +18,7 @@ import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.logging.Logger;
 import ru.ilezzov.showregion.logging.PaperLogger;
 import ru.ilezzov.showregion.managers.VersionManager;
+import ru.ilezzov.showregion.managers.regions.RegionManager;
 import ru.ilezzov.showregion.messages.ConsoleMessages;
 import ru.ilezzov.showregion.settings.PluginSettings;
 import ru.ilezzov.showregion.stats.PluginStats;
@@ -60,11 +61,13 @@ public final class Main extends JavaPlugin {
     private static String messageLanguage;
 
     // Files
-    private PluginFile configYamlFile;
+    private static PluginFile configYamlFile;
     @Getter
     private static PluginFile messagesYamlFile;
     @Getter
     private static PluginFile databaseFile;
+    @Getter
+    private static PluginFile regionSettings;
 
     // Config
     @Getter
@@ -73,6 +76,8 @@ public final class Main extends JavaPlugin {
     // Managers
     @Getter
     private static VersionManager versionManager;
+    @Getter
+    private static RegionManager regionManager;
 
     // Database
     @Getter
@@ -117,6 +122,7 @@ public final class Main extends JavaPlugin {
 
         // Load data repositories
         loadDataRepositories();
+        insertAllPlayers();
 
         // Load managers
         loadManagers();
@@ -208,6 +214,7 @@ public final class Main extends JavaPlugin {
         messageLanguage = configYamlFile.getString("language");
         messagesYamlFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));
         databaseFile = new PluginFile(Main.getInstance(), "data/database.yml");
+        regionSettings = new PluginFile(Main.getInstance(), "region_settings.yml");
     }
 
     private void loadEvents() {
@@ -227,6 +234,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static void reloadFiles() {
+        configYamlFile.reload();
         config.reload();
 
         final String messageLanguage = config.language();
@@ -238,13 +246,12 @@ public final class Main extends JavaPlugin {
         }
 
         databaseFile.reload();
+        regionSettings.reload();
     }
 
     public static void insertAllPlayers() {
         final List<PlayerData> playerDataList = Bukkit.getOnlinePlayers().stream()
-                .map(player -> {
-                    return getPlayerDataByPlayer(player);
-                })
+                .map(Main::getPlayerDataByPlayer)
                 .toList();
     }
 
@@ -253,6 +260,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void loadManagers() {
+        regionManager = new RegionManager();
     }
 
     private void loadMetrics() {
