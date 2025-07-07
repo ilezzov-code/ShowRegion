@@ -58,9 +58,6 @@ public class EventManager {
     }
 
     private Map<Class<? extends Listener>, Boolean> loadListenerClasses() {
-        final FileConfiguration config = Main.getConfigFile().getConfig();
-        final ConfigurationSection lobbySettings = config.getConfigurationSection("lobby_settings");
-
         return Map.ofEntries(
                 Map.entry(VersionCheckEvent.class, true)
         );
