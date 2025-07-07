@@ -34,7 +34,7 @@ showing_settings:
   default_enable: true
   #
   # Включить Bossbar
-  enable_bossbar: true
+  enable_boss_bar: true
   #
   # Включить ActionBar
   enable_action_bar: true
