@@ -38,7 +38,7 @@ public interface DataRepository<K, V> extends QueueManager<V> {
      */
     void insertAll(Collection<? extends V> data);
 
-    CompletableFuture<Integer> delete(K key);
+    CompletableFuture<Status> delete(K key);
 
     Map<K, V> asMap();
 

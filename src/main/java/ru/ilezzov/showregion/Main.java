@@ -1,15 +1,20 @@
 package ru.ilezzov.showregion;
 
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.ilezzov.showregion.database.DatabaseType;
 import ru.ilezzov.showregion.database.SQLDatabase;
 import ru.ilezzov.showregion.database.adapter.MySQLDatabase;
 import ru.ilezzov.showregion.database.adapter.PostgreSQLDatabase;
 import ru.ilezzov.showregion.database.adapter.SQLiteDatabase;
+import ru.ilezzov.showregion.database.data.player.PlayerData;
+import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
 import ru.ilezzov.showregion.events.EventManager;
 import ru.ilezzov.showregion.file.PluginFile;
+import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.logging.Logger;
 import ru.ilezzov.showregion.logging.PaperLogger;
 import ru.ilezzov.showregion.managers.VersionManager;
@@ -55,19 +60,26 @@ public final class Main extends JavaPlugin {
     private static String messageLanguage;
 
     // Files
+    private PluginFile configYamlFile;
     @Getter
-    private static PluginFile configFile;
-    @Getter
-    private static PluginFile messagesFile;
+    private static PluginFile messagesYamlFile;
     @Getter
     private static PluginFile databaseFile;
+
+    // Config
+    @Getter
+    private static Config config;
 
     // Managers
     @Getter
     private static VersionManager versionManager;
+
     // Database
     @Getter
     private static SQLDatabase database;
+
+    @Getter
+    private static PlayerDataRepository playerDataRepository;
 
     // Events
     @Getter
@@ -82,6 +94,8 @@ public final class Main extends JavaPlugin {
         // Load files
         loadSettings();
         loadFiles();
+
+        config = new Config(this.configYamlFile);
 
         // Load plugin info
         loadPluginInfo();
@@ -100,6 +114,9 @@ public final class Main extends JavaPlugin {
             pluginLogger.info(errorOccurred(e.getMessage()));
             throw new RuntimeException(e);
         }
+
+        // Load data repositories
+        loadDataRepositories();
 
         // Load managers
         loadManagers();
@@ -128,7 +145,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static void checkPluginVersion() {
-        if (configFile.getBoolean("check_updates")) {
+        if (config.checkUpdates()) {
             try {
                 versionManager = new VersionManager(pluginVersion, pluginSettings.getUrlToFileVersion());
 
@@ -182,9 +199,9 @@ public final class Main extends JavaPlugin {
     }
 
     private void loadFiles() {
-        configFile = new PluginFile(Main.getInstance(), "config.yml");
-        messageLanguage = configFile.getString("language");
-        messagesFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));
+        configYamlFile = new PluginFile(Main.getInstance(), "config.yml");
+        messageLanguage = configYamlFile.getString("language");
+        messagesYamlFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));
         databaseFile = new PluginFile(Main.getInstance(), "data/database.yml");
     }
 
@@ -194,28 +211,40 @@ public final class Main extends JavaPlugin {
     }
 
     private void loadPluginInfo() {
-        prefix = getMessagesFile().getString("Plugin.plugin-prefix");
+        prefix = messagesYamlFile.getString("Plugin.plugin-prefix");
         pluginVersion = this.getDescription().getVersion();
         pluginDevelopers = this.getDescription().getAuthors();
         pluginContactLink = this.getDescription().getWebsite();
     }
 
     public static void reloadPluginInfo() {
-        prefix = getMessagesFile().getString("Plugin.plugin-prefix");
+        prefix = messagesYamlFile.getString("Plugin.plugin-prefix");
     }
 
     public static void reloadFiles() {
-        configFile.reload();
+        config.reload();
 
-        final String messageLanguage = configFile.getString("language");
+        final String messageLanguage = config.language();
 
         if (!messageLanguage.equals(getMessageLanguage())) {
-            messagesFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));
+            messagesYamlFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));
         } else {
-            messagesFile.reload();
+            messagesYamlFile.reload();
         }
 
         databaseFile.reload();
+    }
+
+    public static void insertAllPlayers() {
+        final List<PlayerData> playerDataList = Bukkit.getOnlinePlayers().stream()
+                .map(player -> {
+                    return getPlayerDataByPlayer(player);
+                })
+                .toList();
+    }
+
+    private static PlayerData getPlayerDataByPlayer(final Player player) {
+        return null;
     }
 
     private void loadManagers() {
@@ -227,5 +256,9 @@ public final class Main extends JavaPlugin {
 
     private void sendEnableMessage() {
         pluginLogger.info(pluginEnable(ListUtils.listToString(getPluginDevelopers()), getPluginVersion(), getPluginContactLink()));
+    }
+
+    private void loadDataRepositories() {
+        playerDataRepository = new PlayerDataRepository(database, this);
     }
 }

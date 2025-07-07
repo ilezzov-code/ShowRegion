@@ -9,7 +9,7 @@ import ru.ilezzov.showregion.utils.PlaceholderReplacer;
 
 public class PluginMessages {
     private static PluginFile getMessages() {
-        return Main.getMessagesFile();
+        return Main.getMessagesYamlFile();
     }
 
     public static Component pluginUseLatestVersionMessage(final PluginPlaceholder placeholder) {
