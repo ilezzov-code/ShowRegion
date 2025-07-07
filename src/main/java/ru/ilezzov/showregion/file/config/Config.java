@@ -38,7 +38,7 @@ public class Config {
         return showingSection;
     }
 
-    private static final class ConfigShowingSection{
+    public static final class ConfigShowingSection{
         private boolean defaultEnable;
         private boolean enableBossBar;
         private boolean enableActionBar;
