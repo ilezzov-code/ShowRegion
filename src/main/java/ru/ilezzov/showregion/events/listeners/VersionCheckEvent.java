@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import ru.ilezzov.showregion.Main;
 import ru.ilezzov.showregion.managers.VersionManager;
 import ru.ilezzov.showregion.permission.PermissionsChecker;
 import ru.ilezzov.showregion.placeholder.PluginPlaceholder;
@@ -14,11 +15,10 @@ import static ru.ilezzov.showregion.messages.PluginMessages.pluginUseOutdatedVer
 
 public class VersionCheckEvent implements Listener {
     private final PluginPlaceholder eventPlaceholders = new PluginPlaceholder();
-    private final boolean isEnable = (getConfigFile().getBoolean("check_updates"));
 
     @EventHandler
     public void onPlayerJoinEvent(final PlayerJoinEvent event) {
-        if (!isEnable) {
+        if (!Main.getConfig().checkUpdates()) {
             return;
         }
 
