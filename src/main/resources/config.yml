@@ -39,8 +39,12 @@ showing_settings:
   # Включить ActionBar
   enable_action_bar: true
   #
+  # Количество владельцев в плейсхолдере {REGION_OWNER}
+  owner_count: 3
+  #
   # Частота обновления в тиках
   tick_rate: 10
+
 
 # Don't edit this / Не редактируйте это
 config_version: ${project.version}
