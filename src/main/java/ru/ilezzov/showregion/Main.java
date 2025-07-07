@@ -142,6 +142,11 @@ public final class Main extends JavaPlugin {
                 pluginLogger.info(ConsoleMessages.errorOccurred(e.getMessage()));
             }
         }
+        if (playerDataRepository != null) {
+            playerDataRepository.saveCache();
+            playerDataRepository.flushQueue();
+            playerDataRepository.stopAutoSave();
+        }
     }
 
     public static void checkPluginVersion() {
