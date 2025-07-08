@@ -47,8 +47,6 @@ default_regions:
       color: GREEN
       overlay: PROGRESS
 
-
-
 #
 # Настройка сообщений для определенных регионов
 

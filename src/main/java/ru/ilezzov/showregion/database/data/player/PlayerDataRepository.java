@@ -45,7 +45,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
     }
 
     private PlayerData loadFromDatabase(final UUID key) {
-        final String sql = "SELECT * FROM players WHERE name = ?";
+        final String sql = "SELECT * FROM players WHERE uuid = ?";
 
         if (key == null) {
             return null;
@@ -239,19 +239,23 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
     }
 
     private void saveBatch(final List<PlayerData> batch) {
-        final String sql = "UPDATE server_spawn SET " +
-                "world_name = ?, " +
-                "x = ?, " +
-                "y = ?, " +
-                "z = ?, " +
-                "pitch = ?, " +
-                "yaw = ? " +
-                "WHERE name = ?";
+        final String sql = "UPDATE players SET " +
+                "display_name = ? " +
+                "enable_showing = ? " +
+                "enable_showing = ? " +
+                "enable_boss_bar = ?" +
+                "WHERE uuid = ?";
 
         final List<Object[]> batchParams = new ArrayList<>(batch.size());
 
         for (final PlayerData playerData : batch) {
             batchParams.add(new Object[]{
+                    playerData.getDisplayName(),
+                    playerData.getDisplayName(),
+                    playerData.isEnableShowing(),
+                    playerData.isEnableActionBar(),
+                    playerData.isEnableBossBar(),
+                    playerData.getUuid()
             });
         }
 
@@ -259,7 +263,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
             database.executePreparedBatchUpdate(sql, batchParams);
             logger.info(ConsoleMessages.saveQueue());
         } catch (SQLException e) {
-            logger.info(ConsoleMessages.errorOccurred("Failed to insert spawn data: " + e.getMessage()));
+            logger.info(ConsoleMessages.errorOccurred("Failed to insert player data: " + e.getMessage()));
         }
     }
 
