@@ -51,7 +51,7 @@ public class RegionManager {
                 "freeRegion",
                 freeRegionSection.getString("action_bar"),
                 freeRegionSection.getString("boss_bar.text"),
-                freeRegionSection.getDouble("boss_bar.progress"),
+                (float) freeRegionSection.getDouble("boss_bar.progress"),
                 BossBar.Color.valueOf(freeRegionSection.getString("boss_bar.color")),
                 BossBar.Overlay.valueOf(freeRegionSection.getString("boss_bar.overlay"))
         );
@@ -62,7 +62,7 @@ public class RegionManager {
                 "foreignRegion",
                 foreignRegionSection.getString("action_bar"),
                 foreignRegionSection.getString("boss_bar.text"),
-                foreignRegionSection.getDouble("boss_bar.progress"),
+                (float) foreignRegionSection.getDouble("boss_bar.progress"),
                 BossBar.Color.valueOf(foreignRegionSection.getString("boss_bar.color")),
                 BossBar.Overlay.valueOf(foreignRegionSection.getString("boss_bar.overlay"))
         );
@@ -73,7 +73,7 @@ public class RegionManager {
                 "yourRegion",
                 yourRegionSection.getString("action_bar"),
                 yourRegionSection.getString("boss_bar.text"),
-                yourRegionSection.getDouble("boss_bar.progress"),
+                (float) yourRegionSection.getDouble("boss_bar.progress"),
                 BossBar.Color.valueOf(yourRegionSection.getString("boss_bar.color")),
                 BossBar.Overlay.valueOf(yourRegionSection.getString("boss_bar.overlay"))
         );
@@ -86,7 +86,7 @@ public class RegionManager {
                     regionName,
                     customRegionSection.getString("action_bar"),
                     customRegionSection.getString("boss_bar.text"),
-                    customRegionSection.getDouble("boss_bar.progress"),
+                    (float) customRegionSection.getDouble("boss_bar.progress"),
                     BossBar.Color.valueOf(customRegionSection.getString("boss_bar.color")),
                     BossBar.Overlay.valueOf(customRegionSection.getString("boss_bar.overlay"))
             );

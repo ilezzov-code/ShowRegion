@@ -21,6 +21,7 @@ import ru.ilezzov.showregion.file.PluginFile;
 import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.logging.Logger;
 import ru.ilezzov.showregion.logging.PaperLogger;
+import ru.ilezzov.showregion.managers.ShowingManager;
 import ru.ilezzov.showregion.managers.VersionManager;
 import ru.ilezzov.showregion.managers.regions.RegionManager;
 import ru.ilezzov.showregion.messages.ConsoleMessages;
@@ -88,6 +89,8 @@ public final class Main extends JavaPlugin {
     private static VersionManager versionManager;
     @Getter
     private static RegionManager regionManager;
+    @Getter
+    private static ShowingManager showingManager;
 
     // Database
     @Getter
@@ -167,6 +170,10 @@ public final class Main extends JavaPlugin {
             playerDataRepository.saveCache();
             playerDataRepository.flushQueue();
             playerDataRepository.stopAutoSave();
+        }
+
+        if (showingManager != null) {
+            showingManager.stopShowingTask();
         }
     }
 
@@ -276,6 +283,7 @@ public final class Main extends JavaPlugin {
 
     private void loadManagers() {
         regionManager = new RegionManager();
+        showingManager = new ShowingManager(this);
     }
 
     private void loadMetrics() {
