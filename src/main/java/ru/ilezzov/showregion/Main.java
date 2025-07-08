@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.ilezzov.showregion.api.ImpShowRegionApi;
 import ru.ilezzov.showregion.api.ShowRegionApi;
 import ru.ilezzov.showregion.database.DatabaseType;
 import ru.ilezzov.showregion.database.SQLDatabase;
@@ -106,6 +107,9 @@ public final class Main extends JavaPlugin {
         instance = this;
 
         checkWorldGuard();
+
+        // Load API
+        api = new ImpShowRegionApi();
 
         // Load files
         loadSettings();
