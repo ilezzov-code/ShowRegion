@@ -8,6 +8,6 @@ load: STARTUP
 authors: [ ILeZzoV ]
 website: https://t.me/ilezovofficial
 commands:
-  pluginblank:
+  showregion:
     aliases: [ sr ]
     usage: /showregion
