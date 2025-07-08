@@ -109,16 +109,16 @@ public final class Main extends JavaPlugin {
         pluginLogger = new PaperLogger(this);
         instance = this;
 
+        // Load files
+        loadSettings();
+        loadFiles();
+
         checkWorldGuard();
 
         // Load API
         api = new ImpShowRegionApi();
 
-        // Load files
-        loadSettings();
-        loadFiles();
-
-        pluginConfig = new Config(this.configYamlFile);
+        pluginConfig = new Config(configYamlFile);
 
         // Load plugin info
         loadPluginInfo();

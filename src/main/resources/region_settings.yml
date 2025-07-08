@@ -28,24 +28,24 @@ default_regions:
       # Оверлей. Доступные оверлеи
       # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
       overlay: PROGRESS
-    #
-    # Чужой регион
-    foreign_region:
-      action_bar: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
-      boss_bar:
-        text: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
-        progress: 1.0
-        color: RED
-        overlay: PROGRESS
-    #
-    # Ваш регион
-    your_region:
-      action_bar: "&7Вы находитесь в &aсвоем &7регионе"
-      boss_bar:
-        text: "&7Вы находитесь в &aсвоем &7регионе"
-        progress: 1.0
-        color: GREEN
-        overlay: PROGRESS
+  #
+  # Чужой регион
+  foreign_region:
+    action_bar: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
+    boss_bar:
+      text: "&7Вы находитесь в регионе &6{REGION_NAME} &7игрока &6{REGION_OWNER}"
+      progress: 1.0
+      color: RED
+      overlay: PROGRESS
+  #
+  # Ваш регион
+  your_region:
+    action_bar: "&7Вы находитесь в &aсвоем &7регионе"
+    boss_bar:
+      text: "&7Вы находитесь в &aсвоем &7регионе"
+      progress: 1.0
+      color: GREEN
+      overlay: PROGRESS
 
 
 
