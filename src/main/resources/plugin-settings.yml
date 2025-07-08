@@ -26,4 +26,7 @@ Messages:
   event-loaded: "Event &6%s &r has been loaded"
   api-loaded: "Plugin api has been loaded"
 
-  world-loaded: "The lobby world &6%s &r has been loaded"
+  worldguard-connected: "WorldGuard has been &aconnected"
+  download-worldguard: "&cThe plugin requires &6WorldGuard &cto work. Please install it on your server. Download — &6https://dev.bukkit.org/projects/worldguard"
+
+

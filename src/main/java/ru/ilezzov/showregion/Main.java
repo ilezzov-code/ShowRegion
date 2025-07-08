@@ -1,10 +1,13 @@
 package ru.ilezzov.showregion;
 
+import com.sk89q.worldguard.WorldGuard;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.ilezzov.showregion.api.ShowRegionApi;
 import ru.ilezzov.showregion.database.DatabaseType;
 import ru.ilezzov.showregion.database.SQLDatabase;
 import ru.ilezzov.showregion.database.adapter.MySQLDatabase;
@@ -37,6 +40,12 @@ public final class Main extends JavaPlugin {
     // API
     @Getter
     private static Main instance;
+    @Getter
+    private static ShowRegionApi api;
+
+    // WorldGuard
+    @Getter
+    private static WorldGuard worldGuard;
 
     // Logger
     @Getter
@@ -95,6 +104,8 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         pluginLogger = new PaperLogger(this);
         instance = this;
+
+        checkWorldGuard();
 
         // Load files
         loadSettings();
@@ -273,5 +284,18 @@ public final class Main extends JavaPlugin {
 
     private void loadDataRepositories() {
         playerDataRepository = new PlayerDataRepository(database, this);
+    }
+
+    private void checkWorldGuard() {
+        final Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
+
+        if (plugin == null) {
+            pluginLogger.info(ConsoleMessages.downloadWorldGuard());
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        worldGuard = WorldGuard.getInstance();
+        pluginLogger.info(ConsoleMessages.worldGuardConnected());
     }
 }

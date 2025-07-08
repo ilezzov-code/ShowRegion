@@ -70,6 +70,14 @@ public class ConsoleMessages {
         return getComponent(Objects.requireNonNull(messages.getString("world-loaded")), world);
     }
 
+    public static Component worldGuardConnected() {
+        return getComponent(Objects.requireNonNull(messages.getString("worldguard-connected")));
+    }
+
+    public static Component downloadWorldGuard() {
+        return getComponent(Objects.requireNonNull(messages.getString("download-worldguard")));
+    }
+
     private static Component getComponent(final String message, final Object... keys) {
         return LegacySerialize.serialize(message.formatted(keys));
     }
