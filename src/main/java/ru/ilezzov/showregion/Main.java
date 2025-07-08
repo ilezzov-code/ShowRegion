@@ -82,7 +82,7 @@ public final class Main extends JavaPlugin {
 
     // Config
     @Getter
-    private static Config config;
+    private static Config pluginConfig;
 
     // Managers
     @Getter
@@ -118,7 +118,7 @@ public final class Main extends JavaPlugin {
         loadSettings();
         loadFiles();
 
-        config = new Config(this.configYamlFile);
+        pluginConfig = new Config(this.configYamlFile);
 
         // Load plugin info
         loadPluginInfo();
@@ -178,7 +178,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static void checkPluginVersion() {
-        if (config.checkUpdates()) {
+        if (pluginConfig.checkUpdates()) {
             try {
                 versionManager = new VersionManager(pluginVersion, pluginSettings.getUrlToFileVersion());
 
@@ -257,9 +257,9 @@ public final class Main extends JavaPlugin {
 
     public static void reloadFiles() {
         configYamlFile.reload();
-        config.reload();
+        pluginConfig.reload();
 
-        final String messageLanguage = config.language();
+        final String messageLanguage = pluginConfig.language();
 
         if (!messageLanguage.equals(getMessageLanguage())) {
             messagesYamlFile = new PluginFile(Main.getInstance(), "messages/".concat(messageLanguage).concat(".yml"));

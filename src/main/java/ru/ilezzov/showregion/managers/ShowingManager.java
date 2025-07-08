@@ -12,7 +12,6 @@ import ru.ilezzov.showregion.api.ShowRegionApi;
 import ru.ilezzov.showregion.api.region.CurrentRegion;
 import ru.ilezzov.showregion.database.data.player.PlayerData;
 import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
-import ru.ilezzov.showregion.file.PluginFile;
 import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.managers.regions.Region;
 import ru.ilezzov.showregion.managers.regions.RegionManager;
@@ -27,7 +26,7 @@ public class ShowingManager {
     private final ShowRegionApi api = Main.getApi();
 
     private final PlayerDataRepository playerDataRepository = Main.getPlayerDataRepository();
-    private final Config.ConfigShowingSection showingSection = Main.getConfig().showingSection();
+    private final Config.ConfigShowingSection showingSection = Main.getPluginConfig().showingSection();
 
     private final RegionManager regionManager = Main.getRegionManager();
 
@@ -132,7 +131,7 @@ public class ShowingManager {
     }
 
     private String getOwnersString(final Set<String> owners) {
-        final int countOwners = Main.getConfig().showingSection().ownerCount();
+        final int countOwners = Main.getPluginConfig().showingSection().ownerCount();
         final List<String> ownerList = new ArrayList<>(owners);
         final int totalOwners = ownerList.size();
 

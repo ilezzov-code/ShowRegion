@@ -18,7 +18,7 @@ public class VersionCheckEvent implements Listener {
 
     @EventHandler
     public void onPlayerJoinEvent(final PlayerJoinEvent event) {
-        if (!Main.getConfig().checkUpdates()) {
+        if (!Main.getPluginConfig().checkUpdates()) {
             return;
         }
 

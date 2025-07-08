@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class PlayerLoginEvent implements Listener {
     private final PlayerDataRepository playerDataRepository = Main.getPlayerDataRepository();
-    private final Config.ConfigShowingSection showingSection = Main.getConfig().showingSection();
+    private final Config.ConfigShowingSection showingSection = Main.getPluginConfig().showingSection();
 
     @EventHandler
     public void onPlayerLoginEvent(final org.bukkit.event.player.PlayerLoginEvent event) {
