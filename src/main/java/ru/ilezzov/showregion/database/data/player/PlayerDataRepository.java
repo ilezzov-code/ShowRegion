@@ -92,11 +92,11 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 case SQLITE, POSTGRESQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON CONFLICT (name) DO NOTHING";
+                        "ON CONFLICT (display_name) DO NOTHING";
                 case MYSQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON DUPLICATE KEY UPDATE name = name";
+                        "ON DUPLICATE KEY UPDATE display_name = display_name";
             };
 
             final Object[] params = new Object[]{
@@ -111,7 +111,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 database.executePreparedUpdate(sql, params);
                 cache.put(data.getUuid(), data);
             } catch (SQLException e) {
-                logger.info(ConsoleMessages.errorOccurred("Failed to insert spawn data for uuid: " + data.getUuid() + "\n" + e.getMessage()));
+                logger.info(ConsoleMessages.errorOccurred("Failed to insert player data for uuid: " + data.getUuid() + "\n" + e.getMessage()));
             }
         });
     }
@@ -127,11 +127,11 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 case SQLITE, POSTGRESQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON CONFLICT (name) DO NOTHING";
+                        "ON CONFLICT (display_name) DO NOTHING";
                 case MYSQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON DUPLICATE KEY UPDATE name = name";
+                        "ON DUPLICATE KEY UPDATE display_name = display_name";
             };
 
             final List<Object[]> batchParams = new ArrayList<>(data.size());
