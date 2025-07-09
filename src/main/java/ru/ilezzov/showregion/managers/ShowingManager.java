@@ -3,6 +3,7 @@ package ru.ilezzov.showregion.managers;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -29,8 +30,7 @@ public class ShowingManager {
     private final Config.ConfigShowingSection showingSection = Main.getPluginConfig().showingSection();
 
     private final RegionManager regionManager = Main.getRegionManager();
-
-    private BukkitTask showingTask;
+    private final BukkitTask showingTask;
 
     public ShowingManager(final Plugin plugin) {
         this.plugin = plugin;
@@ -60,15 +60,17 @@ public class ShowingManager {
                        }
 
                        final CurrentRegion currentRegion = api.getRegion(player);
-                       Region region = regionManager.getCustomRegion(currentRegion.regionName());
+                       final String currentRegionName = currentRegion.regionName();
+                       Region region = regionManager.getCustomRegion(currentRegionName);
 
                        if (region == null) {
                             region = switch (currentRegion.regionType()) {
                                 case FREE -> regionManager.getFreeRegion();
-                                case FOREIGN -> regionManager.getForeignRegion();
-                                case YOUR -> regionManager.getYourRegion();
+                                case FOREIGN -> regionManager.getForeignRegion().setName(currentRegionName);
+                                case YOUR -> regionManager.getYourRegion().setName(currentRegionName);
                             };
                        }
+
                        if (playerData.isEnableActionBar()) {
                            showActionBar(player, region, currentRegion.regionOwners());
                        }
@@ -83,10 +85,20 @@ public class ShowingManager {
     }
 
     public void stopShowingTask() {
+        final Map<UUID, PlayerData> playerDataMap = playerDataRepository.asMap();
+
+        for (final PlayerData playerData : playerDataMap.values()) {
+            final Player player = Bukkit.getPlayer(playerData.getUuid());
+
+            if (player != null) {
+                player.hideBossBar(playerData.getBossBar());
+            }
+        }
+
         this.showingTask.cancel();
     }
 
-    private void showActionBar(final Player player, final Region region, final Set<String> owners) {
+    private void showActionBar(final Player player, final Region region, final List<String> owners) {
         if (!showingSection.enableActionBar()) {
             return;
         }
@@ -99,7 +111,7 @@ public class ShowingManager {
         Bukkit.getScheduler().runTask(plugin, () -> player.sendActionBar(LegacySerialize.serialize(message)));
     }
 
-    private void showBossBar(final Player player, final PlayerData playerData, final Region region, final Set<String> owners) {
+    private void showBossBar(final Player player, final PlayerData playerData, final Region region, final List<String> owners) {
         final BossBar playerDataBossBar = playerData.getBossBar();
 
         if (!showingSection.enableBossBar()) {
@@ -130,16 +142,19 @@ public class ShowingManager {
         playerDataBossBar.overlay(region.bossBarOverlay());
     }
 
-    private String getOwnersString(final Set<String> owners) {
+    private String getOwnersString(final List<String> owners) {
+        if (owners == null || owners.isEmpty()) {
+            return "";
+        }
+
         final int countOwners = Main.getPluginConfig().showingSection().ownerCount();
-        final List<String> ownerList = new ArrayList<>(owners);
-        final int totalOwners = ownerList.size();
+        final int totalOwners = owners.size();
 
         if (totalOwners > countOwners) {
-            final List<String> firstOwners = ownerList.subList(0, countOwners);
+            final List<String> firstOwners = owners.subList(0, countOwners);
             return String.join(", ", firstOwners);
         } else {
-            return String.join(", ", ownerList);
+            return String.join(", ", owners);
         }
     }
 

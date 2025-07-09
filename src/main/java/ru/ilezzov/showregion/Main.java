@@ -275,6 +275,7 @@ public final class Main extends JavaPlugin {
         final List<PlayerData> playerDataList = Bukkit.getOnlinePlayers().stream()
                 .map(Main::getPlayerDataByPlayer)
                 .toList();
+        playerDataRepository.insertAll(playerDataList);
     }
 
     private static PlayerData getPlayerDataByPlayer(final Player player) {

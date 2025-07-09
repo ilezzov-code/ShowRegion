@@ -10,7 +10,7 @@ default_regions:
   free_region:
     #
     # Сообщение для ActionBar
-    action_bar: "&7Вы находитесь на &aсвободной &7территории"
+    action_bar: "&7Вы находитесь на &eсвободной &7территории"
     #
     # Настройка Boss Bar
     boss_bar:

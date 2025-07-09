@@ -9,6 +9,7 @@ import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import ru.ilezzov.showregion.Main;
@@ -16,6 +17,7 @@ import ru.ilezzov.showregion.api.region.CurrentRegion;
 import ru.ilezzov.showregion.api.region.RegionType;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class ImpShowRegionApi implements ShowRegionApi{
     private final WorldGuard worldGuard = Main.getWorldGuard();
@@ -43,9 +45,15 @@ public class ImpShowRegionApi implements ShowRegionApi{
 
         final DefaultDomain owners = protectedRegion.getOwners();
         if (protectedRegion.isMember(localPlayer) || protectedRegion.isOwner(localPlayer)) {
-            return new CurrentRegion(protectedRegion.getId(), RegionType.YOUR, owners.getPlayers());
+            return new CurrentRegion(protectedRegion.getId(), RegionType.YOUR, getPlayersNames(owners));
         }
 
-        return new CurrentRegion(protectedRegion.getId(), RegionType.FOREIGN, owners.getPlayers());
+        return new CurrentRegion(protectedRegion.getId(), RegionType.FOREIGN,getPlayersNames(owners));
+    }
+
+    private List<String> getPlayersNames(final DefaultDomain owners) {
+        return owners.getPlayerDomain().getUniqueIds().stream()
+                .map(uuid -> Bukkit.getOfflinePlayer(uuid).getName())
+                .toList();
     }
 }

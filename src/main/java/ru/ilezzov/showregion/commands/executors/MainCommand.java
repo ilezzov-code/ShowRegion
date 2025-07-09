@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.ilezzov.showregion.Main;
 import ru.ilezzov.showregion.commands.CommandManager;
+import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.managers.VersionManager;
 import ru.ilezzov.showregion.messages.ConsoleMessages;
 import ru.ilezzov.showregion.messages.PluginMessages;

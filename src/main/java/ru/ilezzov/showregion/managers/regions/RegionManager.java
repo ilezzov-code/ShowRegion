@@ -14,7 +14,7 @@ import java.util.Set;
 public class RegionManager {
     private final PluginFile regionSetting = Main.getRegionSettings();
 
-    private HashMap<String, Region> customRegions = new HashMap<>();
+    private final HashMap<String, Region> customRegions = new HashMap<>();
 
     @Getter
     private Region freeRegion;
