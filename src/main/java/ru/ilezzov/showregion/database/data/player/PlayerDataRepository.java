@@ -240,10 +240,10 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
 
     private void saveBatch(final List<PlayerData> batch) {
         final String sql = "UPDATE players SET " +
-                "display_name = ? " +
-                "enable_showing = ? " +
-                "enable_showing = ? " +
-                "enable_boss_bar = ?" +
+                "display_name = ?, " +
+                "enable_showing = ?, " +
+                "enable_action_bar = ?, " +
+                "enable_boss_bar = ?," +
                 "WHERE uuid = ?";
 
         final List<Object[]> batchParams = new ArrayList<>(batch.size());
@@ -263,7 +263,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
             database.executePreparedBatchUpdate(sql, batchParams);
             logger.info(ConsoleMessages.saveQueue());
         } catch (SQLException e) {
-            logger.info(ConsoleMessages.errorOccurred("Failed to insert player data: " + e.getMessage()));
+            logger.info(ConsoleMessages.errorOccurred("Failed to update player data: " + e.getMessage()));
         }
     }
 
