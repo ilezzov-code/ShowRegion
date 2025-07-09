@@ -9,18 +9,22 @@ import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
+import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import ru.ilezzov.showregion.Main;
 import ru.ilezzov.showregion.api.region.CurrentRegion;
 import ru.ilezzov.showregion.api.region.RegionType;
+import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class ImpShowRegionApi implements ShowRegionApi{
     private final WorldGuard worldGuard = Main.getWorldGuard();
+    private final PlayerDataRepository playerDataRepository = Main.getPlayerDataRepository();
 
     @Override
     public CurrentRegion getRegion(final Player player) {
@@ -49,6 +53,47 @@ public class ImpShowRegionApi implements ShowRegionApi{
         }
 
         return new CurrentRegion(protectedRegion.getId(), RegionType.FOREIGN,getPlayersNames(owners));
+    }
+
+    @Override
+    public CompletableFuture<Integer> toggle(final Player player) {
+        return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
+            if (playerData.isEnableShowing()) {
+                playerData.setEnableShowing(false);
+                return 0;
+            } else {
+                playerData.setEnableShowing(true);
+                return 1;
+            }
+        });
+    }
+
+    @Override
+    public CompletableFuture<Integer> toggleBossBar(final Player player) {
+        return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
+            if (playerData.isEnableBossBar()) {
+                playerData.setEnableBossBar(false);
+                playerData.setEnableShowing(true);
+                return 0;
+            } else {
+                playerData.setEnableBossBar(true);
+                return 1;
+            }
+        });
+    }
+
+    @Override
+    public CompletableFuture<Integer> toggleActionBar(final Player player) {
+        return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
+            if (playerData.isEnableActionBar()) {
+                playerData.setEnableActionBar(false);
+                playerData.setEnableShowing(true);
+                return 0;
+            } else {
+                playerData.setEnableActionBar(true);
+                return 1;
+            }
+        });
     }
 
     private List<String> getPlayersNames(final DefaultDomain owners) {
