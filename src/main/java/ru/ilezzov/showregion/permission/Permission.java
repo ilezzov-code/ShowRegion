@@ -4,20 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum Permission {
-    MAIN("coollobby.*"),
-    NO_COOLDOWN("coollobby.no_cooldown"),
-    RELOAD("coollobby.reload"),
-    FW_COMMAND("coollobby.fw"),
-    LT_COMMAND("coollobby.lt"),
-    SPIT_COMMAND("coollobby.spit"),
-    FLY_COMMAND("coollobby.fly"),
-    DOUBLE_JUMP("coollobby.double_jump"),
-    SPAWN_COMMAND("coollobby.spawn"),
-    SPAWN_SET_COMMAND("coollobby.spawn.set"),
-    SPAWN_REMOVE_COMMAND("coollobby.spawn.remove"),
-    SPAWN_OTHER_PLAYER_COMMAND("coollobby.spawn.other_player_tp"),
-    SPAWN_ALL_COMMAND("coollobby.spawn.*");
-
+    MAIN("showregion.*"),
+    NO_COOLDOWN("showregion.no_cooldown"),
+    RELOAD("showregion.reload"),
+    ACCESS_SHOWING("showregion.access.showing"),
+    TOGGLE_COMMAND("showregion.toggle"),
+    TOGGLE_ALL_COMMAND("showregion.toggle.*"),
+    TOGGLE_BOSSBAR_COMMAND("showregion.toggle.bossbar"),
+    TOGGLE_ACTIONBAR_COMMAND("showregion.toggle.actionbar");
 
     private final String permission;
 
