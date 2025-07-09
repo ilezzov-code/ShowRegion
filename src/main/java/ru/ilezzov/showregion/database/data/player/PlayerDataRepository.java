@@ -59,7 +59,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
             final String name = resultSet.getString("display_name");
             final boolean enableShowing = resultSet.getBoolean("enable_showing");
             final boolean enableActionbar = resultSet.getBoolean("enable_action_bar");
-            final boolean enableBossBar = resultSet.getBoolean("enableBossBar");
+            final boolean enableBossBar = resultSet.getBoolean("enable_boss_bar");
 
             final PlayerData playerData = new PlayerData(
                     key,
@@ -72,7 +72,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
             cache.put(key, playerData);
             return playerData;
         } catch (SQLException e) {
-            logger.error(ConsoleMessages.databaseError(String.format("Failed to load spawn data for uuid %s \n Error: %s", key, e.getMessage())));
+            logger.error(ConsoleMessages.databaseError(String.format("Failed to load player data for uuid %s \n Error: %s", key, e.getMessage())));
             return null;
         }
     }
@@ -92,11 +92,11 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 case SQLITE, POSTGRESQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON CONFLICT (display_name) DO NOTHING";
+                        "ON CONFLICT (uuid) DO NOTHING";
                 case MYSQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON DUPLICATE KEY UPDATE display_name = display_name";
+                        "ON DUPLICATE KEY UPDATE uuid = uuid";
             };
 
             final Object[] params = new Object[]{
@@ -127,11 +127,11 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 case SQLITE, POSTGRESQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON CONFLICT (display_name) DO NOTHING";
+                        "ON CONFLICT (uuid) DO NOTHING";
                 case MYSQL -> "INSERT INTO players " +
                         "(uuid, display_name, enable_showing, enable_action_bar, enable_boss_bar) " +
                         "VALUES (?, ?, ?, ?, ?) " +
-                        "ON DUPLICATE KEY UPDATE display_name = display_name";
+                        "ON DUPLICATE KEY UPDATE uuid = uuid";
             };
 
             final List<Object[]> batchParams = new ArrayList<>(data.size());
