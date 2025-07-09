@@ -94,4 +94,4 @@ custom_regions:
       overlay: PROGRESS
 
 # Don't edit this / Не редактируйте это
-config_version:
+config_version: ${project.version}
