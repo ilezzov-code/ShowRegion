@@ -12,6 +12,7 @@ public class Config {
 
     public Config(final PluginFile configFile) {
         this.configFile = configFile;
+        this.showingSection = new ConfigShowingSection(configFile);
         setValues();
     }
 
@@ -32,7 +33,7 @@ public class Config {
         return showingSection;
     }
 
-    public static final class ConfigShowingSection{
+    public static final class ConfigShowingSection {
         private boolean defaultEnable;
         private boolean enableBossBar;
         private boolean enableActionBar;
@@ -80,11 +81,32 @@ public class Config {
             ownerCount = configurationSection.getInt("owner_count");
             tickRate = configurationSection.getLong("tick_rate");
         }
+
+        @Override
+        public String toString() {
+            return "ConfigShowingSection{" +
+                    "defaultEnable=" + defaultEnable +
+                    ", enableBossBar=" + enableBossBar +
+                    ", enableActionBar=" + enableActionBar +
+                    ", ownerCount=" + ownerCount +
+                    ", tickRate=" + tickRate +
+                    ", configFile=" + configFile +
+                    '}';
+        }
     }
 
     private void setValues() {
         this.language = configFile.getString("language");
         this.checkUpdates = configFile.getBoolean("check_updates");
-        this.showingSection = new ConfigShowingSection(configFile);
+    }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "language='" + language + '\'' +
+                ", checkUpdates=" + checkUpdates +
+                ", showingSection=" + showingSection +
+                ", configFile=" + configFile +
+                '}';
     }
 }
