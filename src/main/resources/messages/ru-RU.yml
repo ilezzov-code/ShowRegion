@@ -31,5 +31,11 @@ Messages:
   command_sr_enable: "{P} &7Отображение регионов &aвключено"
   command_sr_disable: "{P} &7Отображение регионов &cвыключено"
 
+  command_sr_bossbar_enable: "{P} &7Отображение Босс-бара &aвключено"
+  command_sr_bossbar_disable: "{P} &7Отображение Босс-бара &cвыключено"
+
+  command_sr_actionbar_enable: "{P} &7Отображение сообщений над инвентарем &aвключено"
+  command_sr_actionbar_disable: "{P} &7Отображение сообщений над инвентарем &cвыключено"
+
 # Не редактируйте это
 config_version: ${project.version}
