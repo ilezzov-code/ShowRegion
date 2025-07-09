@@ -52,32 +52,22 @@ public class PluginMessages {
         return getComponent("Messages.command-disable", placeholder);
     }
 
-    public static Component commandNameSet(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-set", placeholder);
+    public Component commandToggleMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
+        if (isEnable)
+            return getComponent("Messages.command-toggle-enable", placeholder);
+        return getComponent("Messages.command-toggle-disable", placeholder);
     }
 
-    public static Component commandNameClear(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-clear", placeholder);
+    public Component commandToggleBossBarMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
+        if (isEnable)
+            return getComponent("Messages.command-toggle-bossbar-enable", placeholder);
+        return getComponent("Messages.command-toggle-bossbar-disable", placeholder);
     }
 
-    public static Component commandNameEmpty(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-empty", placeholder);
-    }
-
-    public static Component commandNameMaxLength(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-max-length", placeholder);
-    }
-
-    public static Component commandNameBlockNull(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-block-null", placeholder);
-    }
-
-    public static Component commandNameBlockError(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-block-error", placeholder);
-    }
-
-    public static Component commandNameUseAnvilError(final PluginPlaceholder placeholder) {
-        return getComponent("Messages.command-name-use-anvil-error", placeholder);
+    public Component commandToggleActionBarMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
+        if (isEnable)
+            return getComponent("Messages.command-toggle-actionbar-enable", placeholder);
+        return getComponent("Messages.command-toggle-actionbar-disable", placeholder);
     }
 
     private static Component getComponent(final String key) {
