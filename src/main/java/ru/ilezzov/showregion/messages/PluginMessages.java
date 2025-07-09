@@ -64,7 +64,7 @@ public class PluginMessages {
         return getComponent("Messages.command-toggle-bossbar-disable", placeholder);
     }
 
-    public Component commandToggleActionBarMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
+    public static Component commandToggleActionBarMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
         if (isEnable)
             return getComponent("Messages.command-toggle-actionbar-enable", placeholder);
         return getComponent("Messages.command-toggle-actionbar-disable", placeholder);
