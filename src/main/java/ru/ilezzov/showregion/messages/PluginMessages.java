@@ -58,6 +58,10 @@ public class PluginMessages {
         return getComponent("Messages.command-toggle-disable", placeholder);
     }
 
+    public static Component commandToggleHelpMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
+        return getComponent("Messages.command-toggle-help", placeholder);
+    }
+
     public static Component commandToggleBossBarMessage(final PluginPlaceholder placeholder, final boolean isEnable) {
         if (isEnable)
             return getComponent("Messages.command-toggle-bossbar-enable", placeholder);

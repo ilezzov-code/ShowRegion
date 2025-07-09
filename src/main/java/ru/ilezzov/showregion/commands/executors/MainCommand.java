@@ -1,13 +1,18 @@
 package ru.ilezzov.showregion.commands.executors;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.ilezzov.showregion.Main;
+import ru.ilezzov.showregion.api.ShowRegionApi;
 import ru.ilezzov.showregion.commands.CommandManager;
+import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
 import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.managers.VersionManager;
 import ru.ilezzov.showregion.messages.ConsoleMessages;
@@ -28,6 +33,8 @@ import static ru.ilezzov.showregion.permission.PermissionsChecker.hasPermission;
 
 public class MainCommand implements CommandExecutor, TabCompleter {
     private final PluginPlaceholder commandPlaceholders = new PluginPlaceholder();
+    private final ShowRegionApi api = Main.getApi();
+    private final Plugin plugin = Main.getInstance();
 
     @Override
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, final @NotNull String @NotNull [] args) {
@@ -41,6 +48,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         return switch (args[0]) {
             case "reload" -> handleReload(sender);
             case "version" -> handleVersion(sender);
+            case "toggle" -> handleToggle(sender, args);
             case "sql" -> handleSQL(sender, args);
             case "sql-result" -> handleSQLResult(sender, args);
             default -> handleHelp(sender);
@@ -117,6 +125,25 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         }
 
         sender.sendMessage(PluginMessages.pluginUseLatestVersionMessage(commandPlaceholders));
+        return true;
+    }
+
+    private boolean handleToggle(final CommandSender sender, String[] args) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(PluginMessages.pluginNoConsoleMessage(commandPlaceholders));
+            return true;
+        }
+
+        if (args.length == 1) {
+            api.toggle(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleMessage(commandPlaceholders, status == 1))));
+            return true;
+        } else {
+            switch (args[1].toLowerCase()) {
+                case "actionbar" -> api.toggleActionBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleActionBarMessage(commandPlaceholders, status == 1))));
+                case "bossbar" -> api.toggleBossBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleBossBarMessage(commandPlaceholders, status == 1))));
+                default ->
+            }
+        }
         return true;
     }
 
