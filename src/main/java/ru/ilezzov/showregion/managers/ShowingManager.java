@@ -16,6 +16,8 @@ import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
 import ru.ilezzov.showregion.file.config.Config;
 import ru.ilezzov.showregion.managers.regions.Region;
 import ru.ilezzov.showregion.managers.regions.RegionManager;
+import ru.ilezzov.showregion.permission.Permission;
+import ru.ilezzov.showregion.permission.PermissionsChecker;
 import ru.ilezzov.showregion.placeholder.PluginPlaceholder;
 import ru.ilezzov.showregion.utils.LegacySerialize;
 import ru.ilezzov.showregion.utils.PlaceholderReplacer;
@@ -48,6 +50,10 @@ public class ShowingManager {
 
                     playerDataRepository.get(uuid).thenAccept(playerData -> {
                        if (playerData == null) {
+                           return;
+                       }
+
+                       if (!PermissionsChecker.hasPermission(player, Permission.ACCESS_SHOWING)) {
                            return;
                        }
 
