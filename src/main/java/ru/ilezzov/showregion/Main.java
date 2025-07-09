@@ -115,9 +115,6 @@ public final class Main extends JavaPlugin {
 
         checkWorldGuard();
 
-        // Load API
-        api = new ImpShowRegionApi();
-
         pluginConfig = new Config(configYamlFile);
 
         // Load plugin info
@@ -141,6 +138,9 @@ public final class Main extends JavaPlugin {
         // Load data repositories
         loadDataRepositories();
         insertAllPlayers();
+
+        // Load API
+        api = new ImpShowRegionApi();
 
         // Load managers
         loadManagers();
