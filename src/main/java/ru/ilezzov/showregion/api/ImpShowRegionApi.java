@@ -60,6 +60,7 @@ public class ImpShowRegionApi implements ShowRegionApi{
         return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
             if (playerData.isEnableShowing()) {
                 playerData.setEnableShowing(false);
+                player.hideBossBar(playerData.getBossBar());
                 return 0;
             } else {
                 playerData.setEnableShowing(true);
@@ -71,11 +72,17 @@ public class ImpShowRegionApi implements ShowRegionApi{
     @Override
     public CompletableFuture<Integer> toggleBossBar(final Player player) {
         return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
-            if (playerData.isEnableBossBar()) {
-                playerData.setEnableBossBar(false);
-                playerData.setEnableShowing(true);
-                return 0;
+            if (playerData.isEnableShowing()) {
+                if (playerData.isEnableBossBar()) {
+                    playerData.setEnableBossBar(false);
+                    player.hideBossBar(playerData.getBossBar());
+                    return 0;
+                } else {
+                    playerData.setEnableBossBar(true);
+                    return 1;
+                }
             } else {
+                playerData.setEnableShowing(true);
                 playerData.setEnableBossBar(true);
                 return 1;
             }
@@ -85,11 +92,16 @@ public class ImpShowRegionApi implements ShowRegionApi{
     @Override
     public CompletableFuture<Integer> toggleActionBar(final Player player) {
         return playerDataRepository.get(player.getUniqueId()).thenApplyAsync(playerData -> {
-            if (playerData.isEnableActionBar()) {
-                playerData.setEnableActionBar(false);
-                playerData.setEnableShowing(true);
-                return 0;
+            if (playerData.isEnableShowing()) {
+                if (playerData.isEnableActionBar()) {
+                    playerData.setEnableActionBar(false);
+                    return 0;
+                } else {
+                    playerData.setEnableActionBar(true);
+                    return 1;
+                }
             } else {
+                playerData.setEnableShowing(true);
                 playerData.setEnableActionBar(true);
                 return 1;
             }
