@@ -18,6 +18,7 @@ import ru.ilezzov.showregion.managers.VersionManager;
 import ru.ilezzov.showregion.messages.ConsoleMessages;
 import ru.ilezzov.showregion.messages.PluginMessages;
 import ru.ilezzov.showregion.permission.Permission;
+import ru.ilezzov.showregion.permission.PermissionsChecker;
 import ru.ilezzov.showregion.placeholder.PluginPlaceholder;
 import ru.ilezzov.showregion.utils.LegacySerialize;
 import ru.ilezzov.showregion.utils.ListUtils;
@@ -135,13 +136,30 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 1) {
+            if (!PermissionsChecker.hasPermission(sender, Permission.TOGGLE_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                sender.sendMessage(PluginMessages.pluginNoPermsMessage(commandPlaceholders));
+                return true;
+            }
+
             api.toggle(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleMessage(commandPlaceholders, status == 1))));
             return true;
         } else {
             switch (args[1].toLowerCase()) {
-                case "actionbar" -> api.toggleActionBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleActionBarMessage(commandPlaceholders, status == 1))));
-                case "bossbar" -> api.toggleBossBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleBossBarMessage(commandPlaceholders, status == 1))));
-                default ->
+                case "actionbar" -> {
+                    if (!PermissionsChecker.hasPermission(sender, Permission.TOGGLE_ACTIONBAR_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                        sender.sendMessage(PluginMessages.pluginNoPermsMessage(commandPlaceholders));
+                        return true;
+                    }
+                    api.toggleActionBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleActionBarMessage(commandPlaceholders, status == 1))));
+                }
+                case "bossbar" -> {
+                    if (!PermissionsChecker.hasPermission(sender, Permission.TOGGLE_BOSSBAR_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                        sender.sendMessage(PluginMessages.pluginNoPermsMessage(commandPlaceholders));
+                        return true;
+                    }
+                    api.toggleBossBar(player).thenAccept((status) -> Bukkit.getScheduler().runTask(plugin, () -> player.sendMessage(PluginMessages.commandToggleBossBarMessage(commandPlaceholders, status == 1))));
+                }
+                default -> player.sendMessage(PluginMessages.commandToggleHelpMessage(commandPlaceholders));
             }
         }
         return true;
