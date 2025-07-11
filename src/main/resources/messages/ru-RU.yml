@@ -22,9 +22,9 @@ Messages:
   command-main-message: "{P} &7Помощь по командам плагина: \n\n
       &e/sr version &7— узнать актуальную версию плагина \n
       &e/sr reload &7— перезагрузить плагин \n\n
-      &e/sr toggle &7— включить/выключить отображение регионов
-      &e/sr toggle bossbar &7— включить/выключить boss bar
-      &e/sr toggle actionbar &7— включить/выключить action bar
+      &e/sr toggle &7— включить/выключить отображение регионов \n
+      &e/sr toggle bossbar &7— включить/выключить boss bar \n
+      &e/sr toggle actionbar &7— включить/выключить action bar \n
     &7Разработчик: &6{DEVELOPER} \n
     &7Связаться: <click:open_url:{CONTACT_LINK}>&e{CONTACT_LINK}"
 
@@ -36,6 +36,11 @@ Messages:
 
   command-toggle-actionbar-enable: "{P} &7Отображение сообщений над инвентарем &aвключено"
   command-toggle-actionbar-disable: "{P} &7Отображение сообщений над инвентарем &cвыключено"
+
+  command-toggle-help: "{P} &7Помощь по команде &e/sr toggle&7: \n\n
+      &e/sr toggle &7— включить/выключить отображение регионов \n
+      &e/sr toggle bossbar &7— включить/выключить boss bar \n
+      &e/sr toggle actionbar &7— включить/выключить action bar"
 
 # Не редактируйте это
 config_version: ${project.version}
