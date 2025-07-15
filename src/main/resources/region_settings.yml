@@ -1,4 +1,4 @@
-#
+# Message settings for regions
 # Настройка сообщений для регионов
 
 # Supporting placeholders / Поддерживаемые плейсхоледеры:
@@ -8,23 +8,23 @@ default_regions:
   #
   # Свободный регион
   free_region:
-    #
-    # Сообщение для ActionBar
+    # Message for Action Bar
+    # Сообщение для Action Bar
     action_bar: "&7Вы находитесь на &eсвободной &7территории"
-    #
+    # Settings for Boss Bar
     # Настройка Boss Bar
     boss_bar:
       #
       # Отображаемый текст
       text: "&7Вы находитесь на &eсвободной &7территории"
-      #
+      # Progress [0.0 ; 1.0]
       # Прогресс [0.0 ; 1.0]
       progress: 1.0
-      #
+      # Boss bar color. Supporting colors:
       # Цвет полоски. Доступные цвета:
       # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
       color: YELLOW
-      #
+      # Boss Bar Overlay. Supporting overlays:
       # Оверлей. Доступные оверлеи
       # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
       overlay: PROGRESS
@@ -47,32 +47,32 @@ default_regions:
       color: GREEN
       overlay: PROGRESS
 
-#
+# Message settings for concrete regions
 # Настройка сообщений для определенных регионов
 
-#
+# Custom regions list
 # Список кастомных регионов
 custom_regions:
-  #
+  # Region name (in WorldGuard)
   # Название региона (в WorldGuard)
   spawn:
-    #
-    # Сообщение для ActionBar
+    # Message for Action Bar
+    # Сообщение для Action Bar
     action_bar: "&7Вы находитесь на &6спавне"
-    #
+    # Boss Bar settings
     # Настройка BossBar
     boss_bar:
-      #
+      # Displaying text
       # Отображаемый текст
       text: "&7Вы находитесь на &6спавне"
-      #
+      # Progress [0.0 ; 1.0]
       # Прогресс [0.0 ; 1.0]
       progress: 1.0
-      #
+      # Boss Bar color. Supporting colors:
       # Цвет полоски. Доступные цвета:
       # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
       color: YELLOW
-      #
+      # Overlay. Supporting overlays:
       # Оверлей. Доступные оверлеи
       # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
       overlay: PROGRESS

@@ -32,19 +32,18 @@ showing_settings:
   #
   # Включить ли отображение имени регионов всем новым игрокам при входе
   default_enable: true
-  #
+  # Enable Boss Bar
   # Включить Bossbar
   enable_boss_bar: true
-  #
+  # Enable Action Bar
   # Включить ActionBar
   enable_action_bar: true
-  #
+  # How many region owners display in placeholder {REGION_NAME}
   # Количество владельцев в плейсхолдере {REGION_OWNER}
   owner_count: 3
-  #
+  # Tick rate tp update in ticks
   # Частота обновления в тиках
   tick_rate: 10
-
 
 # Don't edit this / Не редактируйте это
 config_version: ${project.version}
