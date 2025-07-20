@@ -174,7 +174,21 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             if (hasPermission(sender, Permission.RELOAD)) {
                 completions.add("reload");
             }
+            if (hasPermission(sender, Permission.TOGGLE_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                completions.add("toggle");
+            }
         }
+
+        if (args.length == 2) {
+            if (hasPermission(sender, Permission.TOGGLE_ACTIONBAR_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                completions.add("actionbar");
+            }
+
+            if (hasPermission(sender, Permission.TOGGLE_BOSSBAR_COMMAND, Permission.TOGGLE_ALL_COMMAND)) {
+                completions.add("bossbar");
+            }
+        }
+
         return completions;
     }
 
