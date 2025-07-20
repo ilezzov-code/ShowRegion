@@ -243,14 +243,13 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
                 "display_name = ?, " +
                 "enable_showing = ?, " +
                 "enable_action_bar = ?, " +
-                "enable_boss_bar = ?," +
+                "enable_boss_bar = ?" +
                 "WHERE uuid = ?";
 
         final List<Object[]> batchParams = new ArrayList<>(batch.size());
 
         for (final PlayerData playerData : batch) {
             batchParams.add(new Object[]{
-                    playerData.getDisplayName(),
                     playerData.getDisplayName(),
                     playerData.isEnableShowing(),
                     playerData.isEnableActionBar(),
