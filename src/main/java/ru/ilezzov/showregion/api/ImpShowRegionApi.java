@@ -10,6 +10,7 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -61,6 +62,7 @@ public class ImpShowRegionApi implements ShowRegionApi{
             if (playerData.isEnableShowing()) {
                 playerData.setEnableShowing(false);
                 player.hideBossBar(playerData.getBossBar());
+                player.sendActionBar(Component.empty());
                 return 0;
             } else {
                 playerData.setEnableShowing(true);
@@ -95,6 +97,7 @@ public class ImpShowRegionApi implements ShowRegionApi{
             if (playerData.isEnableShowing()) {
                 if (playerData.isEnableActionBar()) {
                     playerData.setEnableActionBar(false);
+                    player.sendActionBar(Component.empty());
                     return 0;
                 } else {
                     playerData.setEnableActionBar(true);
