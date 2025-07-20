@@ -4,7 +4,7 @@ Urls:
 
 Bstats:
   enable: true
-  plugin-id: 25280
+  plugin-id: 26586
 
 Messages:
   create-new-file: "The file &6%s &rhas been created"
