@@ -146,6 +146,7 @@ public class ShowingManager {
         playerDataBossBar.progress(region.bossBarProgress());
         playerDataBossBar.color(region.bossBarColor());
         playerDataBossBar.overlay(region.bossBarOverlay());
+        player.showBossBar(playerDataBossBar);
     }
 
     private String getOwnersString(final List<String> owners) {
