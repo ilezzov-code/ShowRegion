@@ -29,7 +29,7 @@ language: "en-US"
 check_updates: true
 
 showing_settings:
-  #
+  # Should I enable the display of the name of the regions to all new players at the entrance
   # Включить ли отображение имени регионов всем новым игрокам при входе
   default_enable: true
   # Enable Boss Bar
