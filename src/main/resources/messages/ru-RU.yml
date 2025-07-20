@@ -24,7 +24,7 @@ Messages:
       &e/sr reload &7— перезагрузить плагин \n\n
       &e/sr toggle &7— включить/выключить отображение регионов \n
       &e/sr toggle bossbar &7— включить/выключить boss bar \n
-      &e/sr toggle actionbar &7— включить/выключить action bar \n
+      &e/sr toggle actionbar &7— включить/выключить action bar \n\n
     &7Разработчик: &6{DEVELOPER} \n
     &7Связаться: <click:open_url:{CONTACT_LINK}>&e{CONTACT_LINK}"
 
@@ -40,7 +40,7 @@ Messages:
   command-toggle-help: "{P} &7Помощь по команде &e/sr toggle&7: \n\n
       &e/sr toggle &7— включить/выключить отображение регионов \n
       &e/sr toggle bossbar &7— включить/выключить boss bar \n
-      &e/sr toggle actionbar &7— включить/выключить action bar"
+      &e/sr toggle actionbar &7— включить/выключить action bar\n"
 
 # Не редактируйте это
 config_version: ${project.version}
