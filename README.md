@@ -5,7 +5,7 @@
 </div>
 
 <div align="center" content="">
-    <a href="https://modrinth.com/plugin/namedchest">
+    <a href="https://modrinth.com/plugin/showregion">
         <img src="img/social/modrinth.svg" width="">
     </a>
 </div>
