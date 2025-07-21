@@ -1,16 +1,16 @@
 <div align="center">
-    <img src="img/logo/BannerRoundedRu.png" alt="">
+    <img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/logo/BannerRoundedEn.png" alt="">
     <h4>Supporting version: Paper: 1.18.2 — 1.21.x</h4>
     <h1>Showing regions in Action and Boss Bar</h1>
 </div>
 
 <div align="center" content="">
     <a href="https://modrinth.com/plugin/showregion">
-        <img src="img/social/modrinth.svg" width="">
+        <img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/social/modrinth.svg" width="">
     </a>
 </div>
 
-### <a href="https://github.com/ilezzov-code/ShowRegion/blob/main/README_RU.md"><img src="img/flags/ru.svg" width=15px> Выбрать русский README.md</a>
+### <a href="https://github.com/ilezzov-code/ShowRegion/blob/main/README_RU.md"><img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/flags/ru.svg" width=15px> Выбрать русский README.md</a>
 
 ##  <a>Table of contents</a>
 
@@ -103,8 +103,8 @@ The plugin displays each type of region: The Free Region, Your region, and Someo
 
 Examples:
 
-<img src="img/gifs/your_region.gif" width="400">
-<img src="img/gifs/foreign_region.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/your_region.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/foreign_region.gif" width="400">
 
 ## <a id = "region-name-show">Displaying the name of the region and owners</a>
 
@@ -115,7 +115,7 @@ The plugin supports its own placeholders, which you can add to each message.
 
 And here's what it will look like:
 
-<img src="img/gifs/foreign_region_and_name.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/foreign_region_and_name.gif" width="400">
 
 ## <a id = "custom-messages">[🔥] Custom messages for specific regions</a>
 
@@ -167,8 +167,8 @@ custom_regions:
 
 Result:
 
-<img src="img/gifs/custom_names_2.gif" width="400">
-<img src="img/gifs/custom_names_1.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/custom_names_2.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/custom_names_1.gif" width="400">
 
 ## <a id = "toggle-command">Enable / Disable Action Bar and Boss Bar via the command</a>
 
@@ -176,15 +176,15 @@ Each player can customize the display of regions individually for themselves: En
 
 Enable / Disable all elements (command `/sr toggle`)
 
-<img src="img/gifs/toggle_cmd.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/toggle_cmd.gif" width="400">
 
 Enable / Disable Action Bar (command `/sr toggle actionbar`)
 
-<img src="img/gifs/toggle_actonbar_cmd.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/toggle_actonbar_cmd.gif" width="400">
 
 Enable / Disable Boss Bar (command `/sr toggle bossbar`)
 
-<img src="img/gifs/toggle_bossbar_cmd.gif" width="400">
+<img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/gifs/toggle_bossbar_cmd.gif" width="400">
 
 
 ## <a id="commands">Command (/command → /args1, /args2, ... ※ `permission`)</a>
