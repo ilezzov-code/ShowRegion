@@ -1,12 +1,7 @@
 # Database settings
 Database:
-  type: SQLITE # SQLITE, MYSQL, POSTGRESQL
-  host: localhost
-  port: 3306
-  database: showregion
-  username: root
-  password: secret
+  type: SQLITE # SQLITE
 
 # Don't edit this
 # Не редактируйте это
-config_version: 1.2
+config_version: 1.0

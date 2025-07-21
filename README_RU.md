@@ -37,8 +37,6 @@
 * Включение / Отключение Action Bar и Boss Bar через команду → [подробнее](#toggle-command)
 * Настройка частоты обновления
 * Включение / Отключение Action Bar и Boss Bar в config.yml
-* Поддержка SQLite, MySQL, PostgreSQL
-
 
 ## <a id="config">Config.yml</a>
 

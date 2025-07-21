@@ -1,7 +1,5 @@
 package ru.ilezzov.showregion.database.data.player;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -18,7 +16,6 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.TimeUnit;
 
 public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, QueueManager<PlayerData> {
     private final Logger logger = Main.getPluginLogger();
@@ -26,7 +23,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
     private final BukkitTask autoSaveTask;
 
     private final Queue<PlayerData> saveQueue = new ConcurrentLinkedQueue<>();
-    private final Cache<UUID, PlayerData> cache = Caffeine.newBuilder().build();
+    private final Map<UUID, PlayerData> cache = new HashMap<>();
 
     public PlayerDataRepository(final SQLDatabase database, final Plugin plugin) {
         this.database = database;
@@ -35,7 +32,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
 
     @Override
     public CompletableFuture<PlayerData> get(UUID key) {
-        final PlayerData playerData = cache.getIfPresent(key);
+        final PlayerData playerData = cache.get(key);
 
         if (playerData != null) {
             return CompletableFuture.completedFuture(playerData);
@@ -189,13 +186,13 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
 
     @Override
     public Map<UUID, PlayerData> asMap() {
-        return cache.asMap();
+        return cache;
     }
 
     @Override
     public void saveCache() {
 
-        final List<PlayerData> batch = new ArrayList<>(cache.asMap().values());
+        final List<PlayerData> batch = new ArrayList<>(cache.values());
 
         if (batch.isEmpty()) {
             return;
@@ -211,7 +208,7 @@ public class PlayerDataRepository implements DataRepository<UUID, PlayerData>, Q
         }
 
         if (deleteFromCache) {
-            cache.invalidate(value.getUuid());
+            cache.remove(value.getUuid());
         }
 
         saveQueue.add(value);

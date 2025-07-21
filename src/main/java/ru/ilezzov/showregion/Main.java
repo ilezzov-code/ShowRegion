@@ -11,8 +11,6 @@ import ru.ilezzov.showregion.api.ImpShowRegionApi;
 import ru.ilezzov.showregion.api.ShowRegionApi;
 import ru.ilezzov.showregion.database.DatabaseType;
 import ru.ilezzov.showregion.database.SQLDatabase;
-import ru.ilezzov.showregion.database.adapter.MySQLDatabase;
-import ru.ilezzov.showregion.database.adapter.PostgreSQLDatabase;
 import ru.ilezzov.showregion.database.adapter.SQLiteDatabase;
 import ru.ilezzov.showregion.database.data.player.PlayerData;
 import ru.ilezzov.showregion.database.data.player.PlayerDataRepository;
@@ -198,29 +196,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static void createDatabase() {
-        final ConfigurationSection section = databaseFile.getConfig().getConfigurationSection("Database");
-        assert section != null;
-        final String type = section.getString("type", "SQLITE");
-
-        database = switch (type.toUpperCase()) {
-            case "MYSQL" -> new MySQLDatabase(
-                    section.getString("host"),
-                    section.getInt("port"),
-                    section.getString("database"),
-                    section.getString("username"),
-                    section.getString("password"),
-                    DatabaseType.MYSQL
-            );
-            case "POSTGRESQL" -> new PostgreSQLDatabase(
-                    section.getString("host"),
-                    section.getInt("port"),
-                    section.getString("database"),
-                    section.getString("username"),
-                    section.getString("password"),
-                    DatabaseType.POSTGRESQL
-            );
-            default -> new SQLiteDatabase(new File(Main.getInstance().getDataFolder().getPath(), "data/database.db").getPath(), DatabaseType.SQLITE);
-        };
+        database = new SQLiteDatabase(new File(Main.getInstance().getDataFolder().getPath(), "data/database.db").getPath(), DatabaseType.SQLITE);
     }
 
     private void loadSettings() {

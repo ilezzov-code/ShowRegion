@@ -37,8 +37,6 @@
 * Enable / Disable Action Bar and Boss Bar via the command → [more details](#toggle-command)
 * Setting the refresh rate
 * Enable / Disable Action Bar and Boss Bar in config.yml
-* Supporting SQLite, MySQL, PostgreSQL
-
 
 ## <a id="config">Config.yml</a>
 
