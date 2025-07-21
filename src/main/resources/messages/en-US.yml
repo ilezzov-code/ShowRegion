@@ -5,7 +5,7 @@
 # All formats available at https://www.birdflop.com/resources/rgb/
 # You can use all formats simultaneously in one message. The plugin supports this.
 
-plugin:
+Plugin:
   plugin-prefix: "&6ShowRegion &8|" # Plugin prefix. Use {P} in messages
   plugin-reload: "{P} &7Plugin successfully &areloaded"
   plugin-has-error-reload: "{P} &7An error occurred while reloading the plugin: &c{ERROR}"
@@ -14,7 +14,7 @@ plugin:
   plugin-has-error: "{P} &7An error occurred while executing the command O_o → &c{ERROR}"
   plugin-has-error-check-version: "{P} &7Failed to get the latest plugin version. Check your internet connection"
 
-messages:
+Messages:
   command-permission-error: "{P} &cYou do not have permission to execute this command O_o"
   command-no-console-error: "{P} &cThis command is only available to players!"
   command-cooldown: "{P} &7Please wait &6{TIME} &7seconds before executing this command"
