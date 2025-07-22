@@ -12,6 +12,11 @@
 
 ### <a href="https://github.com/ilezzov-code/ShowRegion/tree/main"><img src="img/flags/en.svg" width=15px> Select English README.md</a>
 
+## <a>[❗] Зависимости</a>
+
+Плагин требует установку WorldGuard версии не ниже 7.0.7.
+Скачать — https://dev.bukkit.org/projects/worldguard/files
+
 ##  <a>Оглавление</a>
 
 - [Описание](#about)

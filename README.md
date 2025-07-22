@@ -12,6 +12,11 @@
 
 ### <a href="https://github.com/ilezzov-code/ShowRegion/blob/main/README_RU.md"><img src="https://raw.githubusercontent.com/ilezzov-code/ShowRegion/refs/heads/main/img/flags/ru.svg" width=15px> Выбрать русский README.md</a>
 
+## <a>[❗] Dependencies</a>
+
+The plugin requires the installation of WorldGuard version no lower than 7.0.7
+Download — https://dev.bukkit.org/projects/worldguard/files
+
 ##  <a>Table of contents</a>
 
 - [About](#about)
